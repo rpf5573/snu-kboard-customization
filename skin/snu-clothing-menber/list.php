@@ -37,6 +37,11 @@
 .modal_container .modal_close { width: 26px; height: 26px; position: absolute; top: 10px; right: 10px; font-size:26px; cursor: pointer;}
 .modal_container .modal_wrap .modal_detail { margin-top: 45px; margin-left: 5px; }
 .modal_container .modal_close .closeImg { display: block; width: 100%; height: 100%; }
+.modal-btn {
+  color: #fff;
+  font-size: 14px;
+  background: #888;
+}
 
 .document_top_area { display: inline-block; margin-bottom:20px; width:100%;  }
 .document_top_area .document_top_left { width: 20%; float: left; margin-right:1%;}
