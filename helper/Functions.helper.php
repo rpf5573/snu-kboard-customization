@@ -1049,7 +1049,6 @@ function kboard_search_option(){
 	if($search_option === null){
 		$search_option = (isset($_REQUEST['kboard_search_option'])&&is_array($_REQUEST['kboard_search_option']))?$_REQUEST['kboard_search_option']:array();
 	}
-
 	return apply_filters('kboard_search_option', $search_option);
 }
 

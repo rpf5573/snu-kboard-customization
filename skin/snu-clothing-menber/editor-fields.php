@@ -68,7 +68,7 @@
 				<label class="attr-name" for="<?php echo esc_attr($meta_key)?>"><span class="field-name"><?php echo esc_html($field_name)?></span><?php if($required):?> <span class="attr-required-text">*</span><?php endif?></label>
 				<div class="attr-value">
 					<select id="<?php echo esc_attr($meta_key)?>" name="category1" class="<?php echo esc_attr($required)?>">
-						<option value=""><?php echo __('Category', 'kboard')?> <?php echo __('Select', 'kboard')?></option>
+						<option value=""><?php echo __('입학년도', 'kboard')?> <?php echo __('Select', 'kboard')?></option>
 						<?php while($board->hasNextCategory()):?>
 						<option value="<?php echo $board->currentCategory()?>"<?php if($content->category1 == $board->currentCategory()):?> selected<?php endif?>><?php echo $board->currentCategory()?></option>
 						<?php endwhile?>

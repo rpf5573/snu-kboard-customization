@@ -251,6 +251,34 @@ button.kboard-snu-clothing-menber-button-small:active { background-color: #fff; 
 */
 
 @media screen and (max-width: 600px) {
+    .kboard-snu-clothing-menber-list .kboard-category.category-mobile { display: block; }
+    .kboard-snu-clothing-menber-list .kboard-category.category-pc { display:none ; }
+    .kboard-snu-clothing-menber-list form { margin: 0 auto; padding: 0; max-width: 80%; position: relative; }
+    .kboard-snu-clothing-menber-list .kboard-list-header { padding-bottom: 0px; overflow: hidden; }
+    .kboard-snu-clothing-menber-list .kboard-list-header .kboard-sort { position: relative; display: none; *display: inline; zoom: 1; }
+    .kboard-snu-clothing-menber-list .kboard-list-header .kboard-sort select { display: inline; margin: 0; padding: 0; width: auto; min-width: 0; max-width: none; height: 26px; line-height: 26px; font-size: 12px; color: #666666; border-radius: 0; border: 1px solid #cccccc; background: white; vertical-align: middle; box-shadow: none; box-sizing: content-box; text-indent: 0; -webkit-appearance: menulist; -moz-appearance: menulist; appearance: menulist; }
+    .kboard-snu-clothing-menber-list .kboard-list-header .kboard-search { float: left; width: 100%; display: inline-block; margin-bottom: 20px!important; margin-left: -8px; }
+    .kboard-snu-clothing-menber-list .kboard-list-header .kboard-search select { display: inline; margin: 0; padding: 0 5px; width: 100px; min-width: 0; max-width: none; height: 26px; min-height: 0; font-size: 13px; color: #666666; border-radius: 0; border: 1px solid #cccccc; background: white; line-height: 26px; vertical-align: middle; box-shadow: none; box-sizing: content-box; -webkit-appearance: menulist; -moz-appearance: menulist; appearance: menulist; }
+    .kboard-snu-clothing-menber-list .kboard-list-header .kboard-search input { display: inline; margin: 0; padding: 10px; width: 100%; min-width: 0; max-width: none; height: 26px; min-height: 0; background: none; font-size: 16px; color: #222; border-radius: 0; border: 1px solid #aaa; line-height: 26px; vertical-align: middle; box-shadow: none; box-sizing: content-box; }
+    .kboard-snu-clothing-menber-list .kboard-list-header .kboard-search .magnifier { margin-left: -25px; padding: 0; width: 12px; height: 12px; border: none; }
+    .kboard-snu-clothing-menber-list .kboard-list table { border-top: 1px solid #f1f1f1; }
+    .kboard-snu-clothing-menber-list .kboard-list table thead { display: none; }
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-title { padding: 10px 5px; }
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-category2,
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-shortcuts,
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-title .separator { display: none; }
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-title .kboard-snu-clothing-menber-cut-strings { font-size: 13px; line-height: 23px; overflow: hidden; white-space: nowrap; }
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-category1 { width: 80px; }
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-category1 .category1-wrap { padding: 5px 2px; width: 73px; font-size: 12px; }
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-uid,
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-user,
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-date,
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-vote,
+    .kboard-snu-clothing-menber-list .kboard-list table td.kboard-list-view { display: none; }
+    .kboard-snu-clothing-menber-list .kboard-list .kboard-mobile-contents { display: block; font-size: 12px; }
+    .kboard-snu-clothing-menber-list .kboard-list .kboard-mobile-contents .contents-item a { font-size: 12px; }
+    .kboard-snu-clothing-menber-list .kboard-pagination .kboard-pagination-pages li { display: none; }
+
 	#kboard-snu-clothing-menber-editor select,
     #kboard-snu-clothing-menber-editor input[type=text],
     #kboard-snu-clothing-menber-editor input[type=email],
@@ -260,9 +288,9 @@ button.kboard-snu-clothing-menber-button-small:active { background-color: #fff; 
     #kboard-snu-clothing-menber-editor input[type=file] { width: 100%; box-sizing: border-box; }
     #kboard-snu-clothing-menber-editor .kboard-attr-wrap-title { text-align: center; }
     #kboard-snu-clothing-menber-editor .kboard-attr-row { margin: 0 0 10px 0; padding: 0; }
-    #kboard-snu-clothing-menber-editor .kboard-attr-row .attr-name { padding: 0; width: 100%; font-size: 14px; }
+    #kboard-snu-clothing-menber-editor .kboard-attr-row .attr-name { padding: 0 5px; width: 100%; font-size: 14px; }
     #kboard-snu-clothing-menber-editor .kboard-attr-row .attr-name.mobile-hide { display: none; }
-    #kboard-snu-clothing-menber-editor .kboard-attr-row .attr-value { float: left; margin: 0; padding: 5px 0; width: 100%; }
+    #kboard-snu-clothing-menber-editor .kboard-attr-row .attr-value { float: left; margin: 0; padding: 5px 3px; width: 100%; }
 	
 	#kboard-snu-clothing-menber-document .kboard-title h1 { padding: 10px 5px; font-size: 18px; }
 	#kboard-snu-clothing-menber-document .kboard-content .content-view { padding: 10px 5px; }

@@ -430,7 +430,6 @@ class KBContentList {
 			$keyword = esc_sql($keyword);
 			
 			$keyword_list = preg_split("/(&|\|)/", $keyword, -1, PREG_SPLIT_DELIM_CAPTURE);
-
 			if(is_array($keyword_list) && count($keyword_list) > 0){
 				foreach($keyword_list as $keyword){
 					if($keyword == '&'){
@@ -702,13 +701,8 @@ class KBContentList {
 		// kboard_list_select_count, kboard_list_select, kboard_list_from, kboard_list_where, kboard_list_orderby 워드프레스 필터 실행
 		$select_count = apply_filters('kboard_list_select_count', 'COUNT(*)', $this->board_id, $this);
 		$select = apply_filters('kboard_list_select', $default_select, $this->board_id, $this);
-
 		$from = apply_filters('kboard_list_from', implode(' ', $this->from), $this->board_id, $this);
-    ray('from', $from);
-
 		$where = apply_filters('kboard_list_where', implode(' AND ', $this->where), $this->board_id, $this);
-    ray('where', $where);
-
 		$orderby = apply_filters('kboard_list_orderby', "{$this->sort} {$this->order}", $this->board_id, $this);
 		
 		$offset = ($this->page-1)*$this->rpp;
