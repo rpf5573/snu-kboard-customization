@@ -796,8 +796,8 @@ function kboard_builder($args){
 		$builder = new KBoardBuilder($board->id);
 		$builder->board = $board;
 		$builder->setSkin($board->skin);
-    if (isset($_REQUEST['rpp']) && !empty($_REQUEST['rpp'])) {
-      $builder->setRpp(intval($_REQUEST['rpp']));
+    if (isset($_REQUEST['kboard_list_rpp']) && !empty($_REQUEST['kboard_list_rpp'])) {
+      $builder->setRpp(intval($_REQUEST['kboard_list_rpp']));
     } else if(wp_is_mobile() && $board->meta->mobile_page_rpp){
 			$builder->setRpp($board->meta->mobile_page_rpp);
 		}
