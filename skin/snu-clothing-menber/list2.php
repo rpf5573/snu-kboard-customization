@@ -1,4 +1,5 @@
-<?php while($content = $list->hasNext()):?>
+<?php 
+while($content = $list->hasNext()): ?>
 <tr class="<?php if($content->uid == kboard_uid()):?>kboard-list-selected<?php endif?>">
 	<td class="kboard-list-uid"><?php echo $list->index()?></td>
 	<td class="kboard-list-title">
@@ -43,8 +44,19 @@
 		                <div class="info_item"><span class="title"><?php echo $content->title?></span><span class="name_br"><br></span><span>(<?php echo $content->option->{'Name_English'}?>, <?php echo $content->option->{'Name_Chinese'}?>)</span></div>
 		            </div>
 		            <div class="info_2line">
+                    <?php
+                    $options = $content->option->row;
+                    $age = '';
+                    if (isset($options['birth_date'])) {
+                      $birth_date = $options['birth_date'];
+                      if (function_exists('snu_is_valid_date') && snu_is_valid_date($birth_date)) {
+                        if (function_exists('snu_get_age')) {
+                          $age = snu_get_age($birth_date);
+                        }
+                      }
+                    } ?>
 		                <div class="info_item"><span class="item_name">성별</span><span class="value"><?php echo $content->option->{'Gender'}?></span></div>
-		                <div class="info_item"><span class="item_name">나이</span><span class="value"> </span></div>
+		                <div class="info_item"><span class="item_name">나이</span><span class="value"><?php echo $age; ?></span></div>
 		                <div class="info_item"><span class="item_name">생년월일</span><span class="value"><?php echo date('Y.m.d', strtotime($content->option->{'Birth_Date'}))?></span></div>
 		                <div class="info_item"><span class="item_name">입학년도</span><span class="value"><?php if($content->category1):?><?php echo $content->category1?><?php endif?></span></div>
 		                <div class="info_item last_item1"><span class="item_name">연락처</span><span class="value"><?php echo $content->option->{'Mobile_No'}?></span></div>
