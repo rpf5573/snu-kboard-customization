@@ -2,13 +2,41 @@
 .kboard-snu-clothing-menber-list .kboard-list tbody td.kboard-list-title .portrait { width: 35px; height: 35px; float: left;  background-image: url(<?php echo $content->attach->{'portrait'}[0]; ?>) !important; background-position: center top !important; background-repeat: no-repeat !important; background-size: cover !important; background-blend-mode: multiply; margin-right: 10px;}
 .kboard-snu-clothing-menber-list .kboard-list tbody td.kboard-list-title .noimg { width: 35px; height: 35px; float: left; margin-right: 10px;}
 .kboard-snu-clothing-menber-list .kboard-list tbody td.kboard-list-title .name_area { padding: 7px 0 0 0; }
-.modal_wrap { width: 800px; height: 800px; position: absolute; border: 2px solid #0F0F70; top:50%; left: 50%; margin: -400px 0 0 -400px; padding:0 30px 20px 30px; background:#fff; z-index: 999; display : none; }
-.modal_wrap.show-modal { display: block; }
-.modal_background.show-modal { display: block; }
-.modal_background { position: absolute; width: 100%; height: 100%; background-color:rgba(256, 256, 256, 0.7); top:0; left: 0; z-index: 998; display : none; }
-.modal_close { width: 26px; height: 26px; position: absolute; top: 10px; right: 10px; font-size:26px;}
-.modal_wrap .modal_detail { margin-top: 45px; margin-left: 5px; }
-.modal_close .closeImg { display: block; width: 100%; height: 100%; }
+.modal_container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1002;
+
+  background-color:rgba(256, 256, 256, 0.7);
+}
+
+.modal_container.show-modal { 
+  display: flex;
+}
+
+.modal_container .modal_wrap {
+  position: relative;
+
+  width: 800px;
+  height: 800px;
+
+  z-index: 1003;
+  
+  padding:0 30px 20px 30px;
+  background:#fff;
+  border: 2px solid #0F0F70;
+}
+.modal_container .modal_close { width: 26px; height: 26px; position: absolute; top: 10px; right: 10px; font-size:26px; cursor: pointer;}
+.modal_container .modal_wrap .modal_detail { margin-top: 45px; margin-left: 5px; }
+.modal_container .modal_close .closeImg { display: block; width: 100%; height: 100%; }
 
 .document_top_area { display: inline-block; margin-bottom:20px; width:100%;  }
 .document_top_area .document_top_left { width: 20%; float: left; margin-right:1%;}
@@ -120,6 +148,14 @@ else:
 					<option value="newest"<?php if($list->getSorting() == 'newest'):?> selected<?php endif?>><?php echo __('Newest', 'kboard')?></option>
           <option value="updated"<?php if($list->getSorting() == 'updated'):?> selected<?php endif?>><?php echo __('Updated', 'kboard')?></option>
 				</select>
+
+        <select name="kboard_list_rpp" onchange="jQuery('#kboard-sort-form-<?php echo $board->id?>').submit();">
+          <option value="50"<?php if($list->getRpp() === 2):?> selected<?php endif?>>2개</option>
+          <option value="100"<?php if($list->getRpp() == 3):?> selected<?php endif?>>3개</option>
+          <option value="300"<?php if($list->getRpp() == 4):?> selected<?php endif?>>4개</option>
+          <option value="500"<?php if($list->getRpp() == 5):?> selected<?php endif?>>5개</option>
+          <option value="1000"<?php if($list->getRpp() == 6):?> selected<?php endif?>>6개</option>
+				</select>
 			</form>
 		</div>
 	</div>
@@ -147,13 +183,13 @@ else:
 				<tbody>
 
 					<?php
-					// 리스트 레이아웃을 불러온다.
-					if(is_admin()){
-						include 'list3.php';
-					}
-					else{
-						include 'list2.php';
-					}
+            // 리스트 레이아웃을 불러온다.
+            if(is_admin()){
+              include_once 'list-admin.php';
+            }
+            else{
+              include_once 'list-user.php';
+            }
 					?>
 				</tbody>
 			</table>
@@ -180,31 +216,32 @@ else:
 <?php wp_enqueue_script('kboard-snu-clothing-menber-list', "{$skin_path}/list.js", array(), KBOARD_snu_clothing_menber_VERSION, true)?>
 <?php endif?>
 <script>
+'use strict';
+(($) => {
+  document.addEventListener("DOMContentLoaded", () => {
+    const $buttons = $('.kboard-list-view > .modal-btn');
+    if ($buttons.length === 0) return;
 
-        'use strict';
-        const modal_wrap = document.querySelector('.modal_wrap')
-        const modal_background = document.querySelector('.modal_background')
-    
-        //Show modal
-        document.querySelector('#modal_btn').addEventListener('click', () => {
-        open()
-        })
-    
-        //Hide modal
-        document.querySelector('.modal_close').addEventListener('click', () => {
-        close()
-        })
-    
-        //Hide modal
-        window.addEventListener('click', (e) => {
-        e.target === modal_background ?  close() : false
-        })
-        function close(){
-        modal_wrap.classList.remove('show-modal');
-        modal_background.classList.remove('show-modal');
-        }
-        function open(){
-        modal_wrap.classList.add('show-modal')
-        modal_background.classList.add('show-modal')
-        }
-        </script>
+    $(".modal_container").on("click", (e) => {
+      const $target = $(e.currentTarget);
+      const wrap = e.currentTarget.querySelector('.modal_wrap');
+      const originalEvent = e.originalEvent;
+      const paths = originalEvent.composedPath();
+      !paths.includes(wrap) && $target.removeClass("show-modal");
+    });
+
+    $('.modal_close').on("click", (e) => {
+      const $target = $(e.currentTarget);
+      console.log($target);
+      const $container = $($target.closest('.modal_container'));
+      $container.removeClass('show-modal');
+    });
+
+    $buttons.on("click", (e) => {
+      const $target = $(e.currentTarget);
+      const id = $target.attr("data-modal-id");
+      $(`.modal_container[data-modal-id="${id}"]`).addClass('show-modal');
+    });
+  });
+})(jQuery);
+</script>
