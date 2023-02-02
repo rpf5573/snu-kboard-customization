@@ -192,6 +192,10 @@ class KBContentList {
 		}
 		return $this;
 	}
+
+  public function getRpp() {
+    return $this->rpp;
+  }
 	
 	/**
 	 * 카테고리1을 입력한다.
